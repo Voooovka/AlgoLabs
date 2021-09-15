@@ -11,7 +11,7 @@ public class QuickSort {
 
 //    ==================================================================================================================
 
-    public static int[] ascSort(int[] array, int low, int high) {
+    public static int[] sort(int[] array, int low, int high, String order) {
         if (array.length == 0)
             return array;
 
@@ -23,57 +23,28 @@ public class QuickSort {
 
         int i = low, j = high;
         while (i <= j) {
-            while (array[i] < opora) {
-                comparisons++;
-                i++;
-            }
 
-            while (array[j] > opora) {
-                comparisons++;
-                j--;
-            }
+            if (order.equals("asc")) {
+                while (array[i] < opora) {
+                    comparisons++;
+                    i++;
+                }
 
-            if (i <= j) {
-                swaps++;
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
-                j--;
-            }
-        }
+                while (array[j] > opora) {
+                    comparisons++;
+                    j--;
+                }
 
-        if (low < j)
-            ascSort(array, low, j);
+            }else {
+                while (array[i] > opora) {
+                    comparisons++;
+                    i++;
+                }
 
-        if (high > i)
-            ascSort(array, i, high);
-
-        return array;
-    }
-
-//    ==================================================================================================================
-
-    public static int[] descSort(int[] array, int low, int high) {
-        if (array.length == 0)
-            return array;
-
-        if (low >= high)
-            return array;
-
-        int middle = low + (high - low) / 2;
-        int opora = array[middle];
-
-        int i = low, j = high;
-        while (i <= j) {
-            while (array[i] > opora) {
-                comparisons++;
-                i++;
-            }
-
-            while (array[j] < opora) {
-                comparisons++;
-                j--;
+                while (array[j] < opora) {
+                    comparisons++;
+                    j--;
+                }
             }
 
             if (i <= j) {
@@ -84,45 +55,51 @@ public class QuickSort {
                 i++;
                 j--;
             }
+
+            if (low < j) {
+                sort(array, low, j, order);
+            }
+            if (high > i) {
+                sort(array, i, high, order);
+            }
         }
 
-        if (low < j) {
-            descSort(array, low, j);
-        }
-        if (high > i) {
-            descSort(array, i, high);
-        }
         return array;
     }
 
 //    ==================================================================================================================
 
-    public static String ascSortReturn(int[] arr){
+    public static String sortReturn(int[] arr, String order){
+
         final long startTime = System.nanoTime();
+
         int low = 0;
         int high = arr.length - 1;
-        ascSort(arr, low, high);
-        final long endTime = System.nanoTime();
+        sort(arr, low, high, order);
 
-        return "===== Heap sort ASC =====" +
-                "\nExecution time: " + (endTime - startTime) + "ns" +
-                "\nComparisons: " + comparisons +
-                "\nSwaps " + swaps +
-                "\nSorted array: " + Arrays.toString(arr);
-    }
+        if (order.equals("asc")) {
 
-    public static String descSortReturn(int[] arr){
-        final long startTime = System.nanoTime();
-        int low = 0;
-        int high = arr.length - 1;
-        descSort(arr, low, high);
-        final long endTime = System.nanoTime();
+            final long endTime = System.nanoTime();
 
-        return "===== Heap sort DESC =====" +
-                "\nExecution time: " + (endTime - startTime) + "ns" +
-                "\nComparisons: " + comparisons +
-                "\nSwaps " + swaps +
-                "\nSorted array: " + Arrays.toString(arr);
+            return "===== Heap sort ASC =====" +
+                    "\nExecution time: " + (endTime - startTime) + "ns" +
+                    "\nComparisons: " + comparisons +
+                    "\nSwaps " + swaps +
+                    "\nSorted array: " + Arrays.toString(arr);
+
+        } else if(order.equals("desc")){
+
+            final long endTime = System.nanoTime();
+
+            return "===== Heap sort DESC =====" +
+                    "\nExecution time: " + (endTime - startTime) + "ns" +
+                    "\nComparisons: " + comparisons +
+                    "\nSwaps " + swaps +
+                    "\nSorted array: " + Arrays.toString(arr);
+
+        }
+
+        return "no";
     }
 
 //    ==================================================================================================================
@@ -144,13 +121,7 @@ public class QuickSort {
         String order = args[0];
         int[] arr = readArrFromFile(args[1]);
 
-        if (order.equals("asc")) {
-            System.out.println(ascSortReturn(arr));
-        } else if(order.equals("desc")){
-            System.out.println(descSortReturn(arr));
-        }else {
-            System.out.println("no no no");
-        }
+        System.out.println(sortReturn(arr, order));
 
     }
 }

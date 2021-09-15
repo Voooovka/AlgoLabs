@@ -20,31 +20,31 @@ public class QuickSortTest extends TestCase {
 
     @Test
     public void testSortUnsortedArrAsc() {
-        Assert.assertArrayEquals(QuickSort.ascSort(UNSORTED_ARR, 0, UNSORTED_ARR.length-1), SORTED_ARR_ASC);
+        Assert.assertArrayEquals(QuickSort.sort(UNSORTED_ARR, 0, UNSORTED_ARR.length-1, "asc"), SORTED_ARR_ASC);
     }
 
     @Test
     public void testSortUnsortedArrDesc() {
-        Assert.assertArrayEquals(QuickSort.descSort(UNSORTED_ARR, 0, UNSORTED_ARR.length-1), SORTED_ARR_DESC);
+        Assert.assertArrayEquals(QuickSort.sort(UNSORTED_ARR, 0, UNSORTED_ARR.length-1, "desc"), SORTED_ARR_DESC);
     }
 
     @Test
     public void testSortAscSortedArrAsc() {
-        Assert.assertArrayEquals(QuickSort.ascSort(SORTED_ARR_ASC, 0, UNSORTED_ARR.length-1), SORTED_ARR_ASC);
+        Assert.assertArrayEquals(QuickSort.sort(SORTED_ARR_ASC, 0, UNSORTED_ARR.length-1, "asc"), SORTED_ARR_ASC);
     }
 
     @Test
     public void testSortAscSortedArrDesc() {
-        Assert.assertArrayEquals(QuickSort.descSort(SORTED_ARR_ASC, 0, UNSORTED_ARR.length-1), SORTED_ARR_DESC);
+        Assert.assertArrayEquals(QuickSort.sort(SORTED_ARR_ASC, 0, UNSORTED_ARR.length-1, "desc"), SORTED_ARR_DESC);
     }
 
     @Test
     public void testSortDescSortedArrAsc() {
-        Assert.assertArrayEquals(QuickSort.ascSort(SORTED_ARR_DESC, 0, UNSORTED_ARR.length-1), SORTED_ARR_ASC);
+        Assert.assertArrayEquals(QuickSort.sort(SORTED_ARR_DESC, 0, UNSORTED_ARR.length-1, "asc"), SORTED_ARR_ASC);
     }
 
     @Test
     public void testSortDescSortedArrDesc() {
-        Assert.assertArrayEquals(QuickSort.descSort(SORTED_ARR_DESC, 0, UNSORTED_ARR.length-1), SORTED_ARR_DESC);
+        Assert.assertArrayEquals(QuickSort.sort(SORTED_ARR_DESC, 0, UNSORTED_ARR.length-1, "desc"), SORTED_ARR_DESC);
     }
 }
