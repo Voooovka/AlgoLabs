@@ -11,12 +11,12 @@ public class QuickSort {
 
 //    ==================================================================================================================
 
-    public static void ascSort(int[] array, int low, int high) {
+    public static int[] ascSort(int[] array, int low, int high) {
         if (array.length == 0)
-            return;
+            return array;
 
         if (low >= high)
-            return;
+            return array;
 
         int middle = low + (high - low) / 2;
         int opora = array[middle];
@@ -48,16 +48,18 @@ public class QuickSort {
 
         if (high > i)
             ascSort(array, i, high);
+
+        return array;
     }
 
 //    ==================================================================================================================
 
-    public static void descSort(int[] array, int low, int high) {
+    public static int[] descSort(int[] array, int low, int high) {
         if (array.length == 0)
-            return;
+            return array;
 
         if (low >= high)
-            return;
+            return array;
 
         int middle = low + (high - low) / 2;
         int opora = array[middle];
@@ -90,6 +92,7 @@ public class QuickSort {
         if (high > i) {
             descSort(array, i, high);
         }
+        return array;
     }
 
 //    ==================================================================================================================
