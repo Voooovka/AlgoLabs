@@ -24,14 +24,17 @@ public class QuickSort {
         int i = low, j = high;
         while (i <= j) {
             while (array[i] < opora) {
+                comparisons++;
                 i++;
             }
 
             while (array[j] > opora) {
+                comparisons++;
                 j--;
             }
 
             if (i <= j) {
+                swaps++;
                 int temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -61,15 +64,18 @@ public class QuickSort {
 
         int i = low, j = high;
         while (i <= j) {
-            while (array[i] < opora) {
+            while (array[i] > opora) {
+                comparisons++;
                 i++;
             }
 
-            while (array[j] > opora) {
+            while (array[j] < opora) {
+                comparisons++;
                 j--;
             }
 
             if (i <= j) {
+                swaps++;
                 int temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -78,11 +84,12 @@ public class QuickSort {
             }
         }
 
-        if (low < j)
-            ascSort(array, low, j);
-
-        if (high > i)
-            ascSort(array, i, high);
+        if (low < j) {
+            descSort(array, low, j);
+        }
+        if (high > i) {
+            descSort(array, i, high);
+        }
     }
 
 //    ==================================================================================================================
@@ -144,3 +151,5 @@ public class QuickSort {
 
     }
 }
+
+
