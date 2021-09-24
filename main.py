@@ -3,6 +3,16 @@ class Tree:
     def __init__(self):
         self.root = None
 
+    def print_tree(self):
+        if (self.root != None):
+            self._print_tree(self.root)
+
+    def _print_tree(self, node):
+        if (node != None):
+            self._print_tree(node.left)
+            print(str(node.value), end=' ')
+            self._print_tree(node.right)
+
     def search(self, value: int):
         found_node = self._search(self.root, value)
         if found_node == None:
@@ -68,7 +78,7 @@ class Node:
         self.value = value
 
 
-tree = Tree()
+if __name__ == '__main__':
 tree = Tree()
 tree.insert(15)
 tree.insert(6)
@@ -79,6 +89,4 @@ tree.insert(23)
 tree.insert(71)
 tree.insert(50)
 
-print(tree.search(10))
-print(tree.search(8))
-print(tree.search(6))
+print(tree.print_tree())
