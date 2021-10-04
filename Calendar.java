@@ -37,12 +37,40 @@ public class Calendar {
             }
         }
 
+        int timeBlock = 30;
+        int timeStart = 540;
+
+        String startMinutes;
+        String endMinutes;
+
+        String text = "\nThe team will be busy:\n";
         System.out.print("The Merged Intervals are: ");
-        while (!stack.isEmpty())
-        {
+
+        while (!stack.isEmpty()) {
+
             Interval t = stack.pop();
             System.out.print("["+t.start+","+t.end+"] ");
+
+            int start = timeStart + t.start * timeBlock;
+            int end = timeStart + t.end * timeBlock;
+
+            if (start % 60 == 0){
+                startMinutes = "00";
+            }else {
+                startMinutes = "30";
+            }
+
+            if (end % 60 == 0){
+                endMinutes = "00";
+            }else {
+                endMinutes = "30";
+            }
+
+            text += "\n" + start/60 + ":" + startMinutes + " - " + end/60 + ":" + endMinutes;
+
         }
+
+        System.out.println(text);
     }
 
     public static void main(String args[]) {
